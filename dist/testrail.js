@@ -109,6 +109,9 @@ var TestRail = /** @class */ (function () {
             .catch(function (error) { return console.error(error); }));
     };
     TestRail.prototype.createRun = function (name, description, suiteId, refs) {
+        if ('runId' in this.options) {
+          return;
+        }
         var _this = this;
         if (this.options.includeAllInTestRun === false) {
             this.includeAll = false;
@@ -151,7 +154,11 @@ var TestRail = /** @class */ (function () {
         }).catch(function (error) { return console.error(error); }));
     };
     TestRail.prototype.publishResults = function (results) {
-        this.runId = TestRailCache.retrieve('runId');
+        if ('runId' in this.options) {
+          this.runId = this.options.runId;
+        } else {
+          this.runId = TestRailCache.retrieve('runId');
+        }
         return this.makeSync(axios({
             method: 'post',
             url: this.base + "/add_results_for_cases/" + this.runId,
