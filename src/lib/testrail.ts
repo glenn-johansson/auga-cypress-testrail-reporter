@@ -11,6 +11,9 @@ export class TestRail {
   }
 
   public createRun(name: string, description: string) {
+    if ('runId' in this.options) {
+      return;
+    }
     axios({
       method: 'post',
       url: `${this.base}/add_run/${this.options.projectId}`,
@@ -45,6 +48,9 @@ export class TestRail {
   }
 
   public publishResults(results: TestRailResult[]) {
+    if ('runId' in this.options) {
+      this.runId = this.options['runId'];
+    }
     axios({
       method: 'post',
       url: `${this.base}/add_results_for_cases/${this.runId}`,
