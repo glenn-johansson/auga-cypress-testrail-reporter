@@ -1,30 +1,11 @@
 # TestRail Reporter for Cypress
 
-[![version](https://img.shields.io/npm/v/cypress-testrail-reporter.svg)](https://www.npmjs.com/package/cypress-testrail-reporter)
-[![downloads](https://img.shields.io/npm/dt/cypress-testrail-reporter.svg)](https://www.npmjs.com/package/cypress-testrail-reporter)
-[![MIT License](https://img.shields.io/github/license/Vivify-Ideas/cypress-testrail-reporter.svg)](https://github.com/Vivify-Ideas/cypress-testrail-reporter/blob/master/LICENSE.md)
-
-Publishes [Cypress](https://www.cypress.io/) runs on TestRail. 
-
-Core features:
-
-* Test results are aggregated under the same test run if you are executing more spec(test) files and they are belongs to the same suite
-* Results are reported immediately after single test execution (real-time reporting)
-* Test run would be closed after last spec(test) file has been finished
-* Possibility to upload screenshots for failed and retried test cases - optional (**allowFailedScreenshotUpload: true**)
-* Multi suite project support (set **suiteId=1** in **cypress.json** or set it as a part of runtime environment variables as **testRailSuiteId=1**)
-* Reporting retest status of a test cases - handy in terms of marking tests as flaky (test is reported with retest status for the first try and after second try it passes) Note: cypress retry logic must be enabled for this feature.  
-
-**Important note:** Keep your tests under the one of the following folder structure:
-
-* `cypress/e2e` - default path for Cypress v10 and above
-* `cypress/integration` - default path for Cypress v9 and bellow
-* `cypress/tests`
+Publishes [Cypress](https://www.cypress.io/) runs on TestRail.
 
 ## Install
 
 ```shell
-$ npm install cypress-testrail-reporter --save-dev
+$ npm install auga-cypress-testrail-reporter --save-dev
 ```
 
 ## Usage
@@ -33,7 +14,7 @@ Add reporter to your `cypress.json`:
 
 ```json
 ...
-"reporter": "cypress-testrail-reporter",
+"reporter": "auga-cypress-testrail-reporter",
 "reporterOptions": {
   "host": "https://yourdomain.testrail.com",
   "username": "username",
@@ -129,6 +110,8 @@ CYPRESS_SPEC="cypress/tests/**/*.feature"
 
 npx cypress run --headed --browser chrome --spec "${CYPRESS_SPEC}"
 ```
+
+**runId**: _number_ (optional) ID of an existing Testrail run.
 
 ## TestRail Settings
 
