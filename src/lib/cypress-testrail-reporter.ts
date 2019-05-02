@@ -1,7 +1,7 @@
 import { reporters } from 'mocha';
 import * as moment from 'moment';
 import { TestRail } from './testrail';
-import { titleToCaseIds } from './shared';
+import { titleToCaseIds, durationToElapsed } from './shared';
 import { Status, TestRailResult } from './testrail.interface';
 const chalk = require('chalk');
 
@@ -35,6 +35,7 @@ export class CypressTestRailReporter extends reporters.Spec {
             case_id: caseId,
             status_id: Status.Passed,
             comment: `Execution time: ${test.duration}ms`,
+            elapsed: durationToElapsed(test.duration)
           };
         });
         this.results.push(...results);
