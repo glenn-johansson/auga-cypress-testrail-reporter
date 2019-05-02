@@ -1,15 +1,11 @@
 # TestRail Reporter for Cypress
 
-[![version](https://img.shields.io/npm/v/cypress-testrail-reporter.svg)](https://www.npmjs.com/package/cypress-testrail-reporter)
-[![downloads](https://img.shields.io/npm/dt/cypress-testrail-reporter.svg)](https://www.npmjs.com/package/cypress-testrail-reporter)
-[![MIT License](https://img.shields.io/github/license/Vivify-Ideas/cypress-testrail-reporter.svg)](https://github.com/Vivify-Ideas/cypress-testrail-reporter/blob/master/LICENSE.md)
-
 Publishes [Cypress](https://www.cypress.io/) runs on TestRail.
 
 ## Install
 
 ```shell
-$ npm install cypress-testrail-reporter --save-dev
+$ npm install auga-cypress-testrail-reporter --save-dev
 ```
 
 ## Usage
@@ -18,7 +14,7 @@ Add reporter to your `cypress.json`:
 
 ```json
 ...
-"reporter": "cypress-testrail-reporter",
+"reporter": "auga-cypress-testrail-reporter",
 "reporterOptions": {
   "domain": "yourdomain.testrail.com",
   "username": "username",
@@ -53,6 +49,8 @@ it("Can authenticate a valid userC123", ...
 **suiteId**: _number_ suite with which the tests are associated.
 
 **runName**: _string_ (optional) name of the Testrail run.
+
+**runId**: _number_ (optional) ID of an existing Testrail run.
 
 ## TestRail Settings
 
