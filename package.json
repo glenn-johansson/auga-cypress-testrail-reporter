@@ -1,22 +1,26 @@
 {
-  "name": "cypress-testrail-reporter",
-  "version": "1.1.0",
+  "name": "auga-cypress-testrail-reporter",
+  "version": "1.0.0",
   "description": "A Testrail reporter for cypress including TestRail API basic library",
   "main": "index.js",
   "private": false,
-  "keywords": ["cypress", "testrail", "reporter"],
+  "keywords": [
+    "cypress",
+    "testrail",
+    "reporter"
+  ],
   "author": {
-    "name": "Milutin Savovic",
-    "email": "mickosavovic@gmail.com"
+    "name": "Glenn Johansson",
+    "email": "glenn.johansson@augatechnologies.com"
   },
   "license": "MIT",
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Vivify-Ideas/cypress-testrail-reporter.git"
+    "url": "https://github.com/glenn-johansson/auga-cypress-testrail-reporter.git"
   },
   "bugs": {
-    "url": "https://github.com/Vivify-Ideas/cypress-testrail-reporter/issues"
+    "url": "https://github.com/glenn-johansson/auga-cypress-testrail-reporter/issues"
   },
   "scripts": {
     "tsc": "tsc",

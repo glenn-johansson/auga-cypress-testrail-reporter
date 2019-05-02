@@ -8,6 +8,9 @@ var TestRail = /** @class */ (function () {
         this.base = "https://" + options.domain + "/index.php?/api/v2";
     }
     TestRail.prototype.createRun = function (name, description) {
+        if ('runId' in this.options) {
+          return;
+        }
         var _this = this;
         axios({
             method: 'post',
@@ -41,6 +44,9 @@ var TestRail = /** @class */ (function () {
         }).catch(function (error) { return console.error(error); });
     };
     TestRail.prototype.publishResults = function (results) {
+        if ('runId' in this.options) {
+          this.runId = this.options.runId;
+        }
         var _this = this;
         axios({
             method: 'post',
