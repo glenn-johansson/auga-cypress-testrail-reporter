@@ -4,8 +4,13 @@ Publishes [Cypress](https://www.cypress.io/) runs on TestRail.
 
 ## Install
 
+run the following in the project directory:
 ```shell
-$ npm install auga-cypress-testrail-reporter --save-dev
+$ npm run build && npm link
+```
+then run the following in the project that you want to use the reporter in:
+```shell
+$ npm link auga-cypress-testrail-reporter
 ```
 
 ## Usage
