@@ -166,6 +166,24 @@ export class CypressTestRailReporter extends reporters.Spec {
 
     if (caseIds.length) {
       const caseResults = caseIds.map(caseId => {
+        if ((status === Status.Failed || status === Status.Retest) && this.reporterOptions.testResultsDomain) {
+          let buildNumber = this.reporterOptions.buildNumber;
+          let testBranch = this.reporterOptions.testBranch;
+          let testApp = this.reporterOptions.testApp;
+          let testResultsDomain = this.reporterOptions.testResultsDomain;
+          let screenshotUrl = testResultsDomain;
+
+          if (screenshotUrl && buildNumber) {
+            screenshotUrl = `${screenshotUrl}/build${buildNumber}`;
+          }
+          if (screenshotUrl && testBranch) {
+            screenshotUrl = `${screenshotUrl}/${testBranch}`;
+          }
+          if (screenshotUrl && testApp) {
+            screenshotUrl = `${screenshotUrl}/${testApp}`;
+          }
+          comment = `${comment}\n\nScreenshot: ${screenshotUrl}/screenshots/C${caseId}.png`;
+        }
         return {
           case_id: caseId,
           status_id: status,
