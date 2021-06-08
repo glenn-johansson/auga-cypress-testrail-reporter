@@ -43,13 +43,31 @@ export class CypressTestRailReporter extends reporters.Spec {
     });
 
     runner.on('fail', test => {
+      let buildNumber = reporterOptions.buildNumber;
+      let testBranch = reporterOptions.testBranch;
+      let testApp = reporterOptions.testApp;
+      let testResultsDomain = reporterOptions.testResultsDomain;
+      let screenshotUrl = testResultsDomain;
+
+      if (screenshotUrl && buildNumber) {
+        screenshotUrl = `${screenshotUrl}/build${buildNumber}`;
+      }
+      if (screenshotUrl && testBranch) {
+        screenshotUrl = `${screenshotUrl}/${testBranch}`;
+      }
+      if (screenshotUrl && testApp) {
+        screenshotUrl = `${screenshotUrl}/${testApp}`;
+      }
       const caseIds = titleToCaseIds(test.title);
       if (caseIds.length > 0) {
         const results = caseIds.map(caseId => {
+          if (screenshotUrl) {
+            screenshotUrl = `\n\nScreenshot: ${screenshotUrl}/screenshots/C${caseId}.png`;
+          }
           return {
             case_id: caseId,
             status_id: Status.Failed,
-            comment: `${test.err.message}`,
+            comment: `${test.err.message}${screenshotUrl}`
           };
         });
         this.results.push(...results);
@@ -68,6 +86,8 @@ export class CypressTestRailReporter extends reporters.Spec {
 
         return;
       }
+
+      console.log(this.results);
 
       this.testRail.publishResults(this.results);
     });
